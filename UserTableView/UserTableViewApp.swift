@@ -8,10 +8,11 @@
 import SwiftUI
 
 @main
-struct UserTableViewApp: App {
+struct UserTableViewApp: App{
+@StateObject var user = UserViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(user)
         }
     }
 }

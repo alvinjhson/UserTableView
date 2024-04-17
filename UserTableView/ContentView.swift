@@ -8,17 +8,41 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var user : UserViewModel
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack{
+            VStack {
+                List() {
+                    ForEach(user.userEntries) { entry in
+                        NavigationLink( destination:UserEntryView(userEntry: entry)){
+                            rowView(entry: entry)
+                        }
+                        
+                    }
+                }
+            }
+            .navigationTitle("Users")
+            .navigationBarItems( trailing: NavigationLink(destination: UserEntryView()) {
+               Image(systemName: "plus.circle")
+            })
         }
-        .padding()
+    }
+}
+struct rowView: View {
+    
+    let entry: UserInformation
+    
+    var body: some View {
+        HStack {
+                        Text(entry.name)
+                        Spacer()
+                        Text(entry.email)
+
+        }
     }
 }
 
 #Preview {
     ContentView()
 }
+
