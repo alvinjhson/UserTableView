@@ -6,16 +6,19 @@
 //
 
 import Foundation
+import UIKit
 
 struct UserInformation : Identifiable, Equatable {
     var id = UUID()
     
     var name: String
     var email: String
+    var image : UIImage
     
-    init( name: String, email: String) {
+    init( name: String, email: String, image : UIImage ) {
         self.name = name
         self.email = email
+        self.image = image
     }
     
     
